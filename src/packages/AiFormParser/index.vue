@@ -18,13 +18,13 @@
     :rules="state.formRules"
   >
     <render-panel
-      :list="props.conf.data"
+      :list="state.formConf.data || []"
       :animation="200"
       group="componentsGroup"
       tag="el-row"
       :conf="state.formConf"
       :style="{ marginLeft: 0, alignContent: 'start', height: '100%' }"
-      :gutter="props.conf.gutter"
+      :gutter="state.formConf.gutter"
     ></render-panel>
   </el-form>
 </template>
@@ -47,11 +47,7 @@ const myFormRef =ref()
   
  const state=reactive({
       // idGlobal, 
-      formConf: Object.assign({  tableRefs: {},model:JSON.parse(JSON.stringify(props.conf.model))},props.conf.formConf||{})
-      //{  tableRefs: {},model:JSON.parse(JSON.stringify(this.conf.model)),
-    
-    //}
-    ,
+      formConf: {  tableRefs: {},model: {} },
       formRules: {},
      
       labelWidth: 100, 
@@ -61,15 +57,20 @@ const myFormRef =ref()
  
   onBeforeMount(()=> {
     if (typeof props.conf === 'object' && props.conf !== null) {
- 
-      Object.assign(state.formConf, props.conf)
-    } else { 
+      // 合并配置
+      const formConf = props.conf.formConf || props.conf || {}
+      const model = props.conf.model || {}
+      const data = props.conf.data || []
       
-
+      Object.assign(state.formConf, formConf, {
+        model: JSON.parse(JSON.stringify(model)),
+        data: data,
+        mode: 'parser'
+      })
+    } else { 
       formConfInDB && (state.formConf = formConfInDB)
+      state.formConf.mode = 'parser'
     }
- 
-    state.formConf.mode = 'parser'
 
     getFields(state.formConf.data)
     nextTick((_) => {
