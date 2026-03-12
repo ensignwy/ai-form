@@ -22,7 +22,7 @@
         </el-radio-group>
       </div>
       <div class="header-right">
-        <el-button type="primary" @click="showJson = true" v-if="currentMode === 'designer'">查看JSON</el-button>
+        <el-button type="primary" @click="handleViewJson" v-if="currentMode === 'designer'">查看JSON</el-button>
       </div>
     </el-header>
 
@@ -493,9 +493,14 @@ const copyJson = () => {
   })
 }
 
+// 查看JSON按钮点击事件
+const handleViewJson = async () => {
+  await updateJsonSchema()
+  showJson.value = true
+}
+
 onMounted(() => {
-  // 默认加载示例
-  loadExample()
+  // 页面加载时不自动加载示例
 })
 </script>
 
