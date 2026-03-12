@@ -17,7 +17,7 @@ import { defineAsyncComponent, computed, ref, watch, inject, reactive, h, toRefs
 
 let components = {}
 
-const elModules = import.meta.globEager('./Elements/FormItems/My*/index.vue')
+const elModules = import.meta.glob('./Elements/FormItems/My*/index.vue', { eager: true })
 for (const path in elModules) {
   let cname = elModules[path].default.name
   components[cname] = elModules[path].default
@@ -31,7 +31,7 @@ const props = defineProps({
 })
 let vm = ref(props.item.defaultValue)
 if (props.conf !== undefined) {
-  console.log('props.item.defaultValue',props.item.defaultValue,props.item.tag)
+  
   if(props.conf.model[props.item.vModel]===undefined)
     props.conf.model[props.item.vModel] = ref(props.item.defaultValue)
   vm.value = props.conf.model[props.item.vModel]
