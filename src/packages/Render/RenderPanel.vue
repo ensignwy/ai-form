@@ -1,4 +1,4 @@
-<template> 
+<template>
   <draggable
     v-if="conf.mode === 'designer'"
     :list="list"
@@ -7,7 +7,8 @@
     tag="el-row"
     justify="center" align="middle"
     :component-data="componentData"
-    class="drag-wrapper" 
+    class="drag-wrapper"
+    item-key="formId"
   >
     <template #item="{ element, index }">
       <el-col :span="element.span" :offset="element.offset" :push="element.push" :pull="element.pull">

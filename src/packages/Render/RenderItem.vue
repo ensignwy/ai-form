@@ -1,5 +1,5 @@
 <template> 
-  <div    :class="colClassName"  @click.native.stop="conf.mode === 'designer'&&activeFormItem&&activeFormItem(item)">
+  <div    :class="colClassName"  @click.stop="conf.mode === 'designer'&&activeFormItem&&activeFormItem(item)">
     <template v-if="conf.mode==='designer'">
       <span class="drawing-item-delete" @click="deleteItem(index, parent)" title="删除">
         <el-icon><Delete /></el-icon>

@@ -94,7 +94,7 @@ const state = reactive({
 
 </script>
 
-<Style lang="scss">
+<style lang="scss">
 
 
 .document-link {
@@ -119,4 +119,4 @@ const state = reactive({
 .node-icon {
   color: #bebfc3;
 }
-</Style>
+</style>
