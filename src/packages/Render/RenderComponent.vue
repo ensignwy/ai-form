@@ -17,7 +17,7 @@ import { defineAsyncComponent, computed, ref, watch, inject, reactive, h, toRefs
 
 let components = {}
 
-const elModules = import.meta.globEager('./Elements/FormItems/My*/index.vue')
+const elModules = import.meta.glob('./Elements/FormItems/My*/index.vue', { eager: true })
 for (const path in elModules) {
   let cname = elModules[path].default.name
   components[cname] = elModules[path].default

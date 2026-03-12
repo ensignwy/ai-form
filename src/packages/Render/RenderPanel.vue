@@ -16,7 +16,7 @@
     </template>
   </draggable>
   <el-row v-else :gutter="componentData.gutter" style="display:flex;"  justify="center" align="middle" >
-    <el-col v-for="(element, index) in list"  :span="element.span" :offset="element.offset" :push="element.push" :pull="element.pull">
+    <el-col v-for="(element, index) in list" :key="element.formId || index" :span="element.span" :offset="element.offset" :push="element.push" :pull="element.pull">
       <render-item :index="index" :active-id="activeId" :parent="list" :item="element" :conf="conf"> </render-item>
     </el-col>
   </el-row>

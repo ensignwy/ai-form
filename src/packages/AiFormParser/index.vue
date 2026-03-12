@@ -18,13 +18,13 @@
     :rules="state.formRules"
   >
     <render-panel
-      :list="props.conf.data"
+      :list="state.formData"
       :animation="200"
       group="componentsGroup"
       tag="el-row"
       :conf="state.formConf"
       :style="{ marginLeft: 0, alignContent: 'start', height: '100%' }"
-      :gutter="props.conf.gutter"
+      :gutter="state.formConf.gutter"
     ></render-panel>
   </el-form>
 </template>
@@ -47,7 +47,7 @@ const myFormRef =ref()
   
  const state=reactive({
       // idGlobal, 
-      formConf: Object.assign({  tableRefs: {},model:JSON.parse(JSON.stringify(props.conf.model))},props.conf.formConf||{})
+      formConf: Object.assign({  tableRefs: {},model:JSON.parse(JSON.stringify(props.conf?.model||{}))},props.conf?.formConf||{})
       //{  tableRefs: {},model:JSON.parse(JSON.stringify(this.conf.model)),
     
     //}
@@ -55,14 +55,19 @@ const myFormRef =ref()
       formRules: {},
      
       labelWidth: 100, 
-      drawerVisible: false,  
+      drawerVisible: false,
+      formData: props.conf?.data || []  
     })
  
  
   onBeforeMount(()=> {
     if (typeof props.conf === 'object' && props.conf !== null) {
  
-      Object.assign(state.formConf, props.conf)
+      Object.assign(state.formConf, props.conf.formConf || {})
+      state.formData = props.conf.data || []
+      if (props.conf.model) {
+        state.formConf.model = JSON.parse(JSON.stringify(props.conf.model))
+      }
     } else { 
       
 
@@ -71,7 +76,7 @@ const myFormRef =ref()
  
     state.formConf.mode = 'parser'
 
-    getFields(state.formConf.data)
+    getFields(state.formData)
     nextTick((_) => {
       //干点什么呢
     })
