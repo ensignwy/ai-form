@@ -21,7 +21,7 @@ import globalProperties from './src/globalProperties'
 
   
    
-  const myComs = import.meta.globEager('./src/packages/Ai*/index.vue') 
+  const myComs = import.meta.glob('./src/packages/Ai*/index.vue', { eager: true }) 
 const AiForm = {
     install(app) {
   

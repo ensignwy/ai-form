@@ -68,7 +68,7 @@ Develped by Leo on 2023.9.24
 <script lang="ts" setup>
 let components = {}
 
-const elModules = import.meta.globEager('./Elements/*.vue')
+const elModules = import.meta.glob('./Elements/*.vue', { eager: true })
 for (const path in elModules) {
   let cname = elModules[path].default.__name
   components[cname] = elModules[path].default
@@ -94,7 +94,7 @@ const state = reactive({
 
 </script>
 
-<Style lang="scss">
+<style lang="scss">
 
 
 .document-link {
@@ -119,4 +119,4 @@ const state = reactive({
 .node-icon {
   color: #bebfc3;
 }
-</Style>
+</style>
