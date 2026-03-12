@@ -105,7 +105,7 @@ const cellOperate = (rIdx, cIdx, comm) => {
         }
       }
     }
-    console.log( props.item.children)
+
   } else if (comm === 'mergeWholeRow') {
     var len = rows[rIdx].children.length
     var cell = rows[rIdx].children[0]
@@ -126,7 +126,7 @@ const cellOperate = (rIdx, cIdx, comm) => {
         mergedItem.state |=5
       }
     }
-      console.log(rows)
+
   } else if (comm === 'mergeBelowRow') {
     if (rIdx < rows.length - 1) {
       var cell = rows[rIdx].children[cIdx]
@@ -173,7 +173,6 @@ const cellOperate = (rIdx, cIdx, comm) => {
         mergedItem.state|=3
       }
     }
-    console.log(rows)
   } else if (comm === 'splitMerged') {
     var cell = rows[rIdx].children[cIdx]
     var rowLen = cell.rowSpan

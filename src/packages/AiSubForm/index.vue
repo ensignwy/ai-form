@@ -249,7 +249,7 @@ const filterProps = () => {
   const getUseableProp = (item) => useableProps.find((t) => t.tag === item.tag);
   return conf.map((t) => {
     const useable = getUseableProp(t);
-    console.log("useable", useable, t);
+
     const res = useable
       ? useable.props.reduce((r, key) => ((r[key] = t[key]), r), {})
       : t;

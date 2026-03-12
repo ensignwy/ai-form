@@ -6,7 +6,7 @@ let tinymceObj
 
 export default function loadTinymce(cb) {
   const { tinymceUrl } = pluginsConfig
-  console.log('loadTinymce++++',tinymceUrl)
+
   if (tinymceObj) {
     cb(tinymceObj)
     return

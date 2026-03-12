@@ -186,7 +186,6 @@ const reloadExpressionTemp = () => {
 watch(
   () => props.data,
   (val) => {
-    console.log("+++++++++++++++++++++++++++");
     reloadExpressionTemp();
   },
   { immediate: true }
